@@ -54,7 +54,7 @@ async def on_ready():
 ```
 This code block defines the `slash` variable as `bot.tree.command`, which is used to create slash commands. The `on_ready` event is then defined, which syncs the slash commands and sets the bot's presence.
 
-### `password` Command
+### Password Command
 ```python
 @slash(name="password", description="Generates a secure password for you.")
 async def password(interaction: discord.Interaction,lengh:int):
@@ -67,4 +67,52 @@ async def password(interaction: discord.Interaction,lengh:int):
     embed.add_field(name="", value=f'<:arrow:1089578080718299136><:arrow:1089578080718299136>  ||{password}||', inline=True)
     await interaction.response.send_message(embed=embed,ephemeral=True)
 ```
-This code block defines the `password` command as a slash command with the name "password" and the description "Generates a secure password for you?".
+This code block defines the `password` command as a slash command with the name "password" and the description "Generates a secure password for you".
+
+### IP command
+The ip command retrieves information about a given IP address using the ipapi.co API.
+
+#### Syntax
+`.ip <ip_address>`
+
+#### Parameters
+| Parameter  |  Description |
+| :------------  | :------------ |
+|  ip_address | The IP address for which to retrieve information. Must be a string.  |
+
+
+
+
+#### Example Usage
+`.ip 8.8.8.8`
+
+##### Response
+The response will be an embedded message containing the following fields:
+
+|  Field |  Description |
+| :------------ | :------------ |
+| City  |  	The city associated with the IP address |
+| Region  | The region associated with the IP address  |
+| Country  | 	The country associated with the IP address  |
+| Country Code  | The ISO code of the country associated with the IP address  |
+| Continent Code  |  The ISO code of the continent associated with the IP address |
+|  Timezone | The timezone associated with the IP address  |
+|   ISP | The ISP associated with the IP address  |
+|   IP |  The IP address for which information was requested |
+
+##### Example Response
+
+```yaml
+Information for IP address: 8.8.8.8
+City: Mountain View
+Region: California
+Country: United States
+Country Code: US
+Continent Code: NA
+Timezone: America/Los_Angeles
+ISP: Google LLC
+IP: 8.8.8.8
+```
+
+#### Permissions
+The `ip` command requires the `embed_links` permission to be enabled for the bot in order to display the embedded message.
